@@ -1,6 +1,10 @@
 import { Users, Award, Shield, Heart, Target, Eye } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
+import PageHeader from '../components/PageHeader';
 
 const About = () => {
+  const { t } = useLanguage();
+
   const stats = [
     { label: 'Years in Business', value: '9+' },
     { label: 'Happy Customers', value: '50K+' },
@@ -59,16 +63,14 @@ const About = () => {
   ];
 
   return (
-    <div className="py-8">
+    <div>
+      <PageHeader 
+        title={t('aboutTitle')}
+        subtitle={t('aboutSubtitle')}
+        backgroundImage="https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&w=1200"
+      />
+      <div className="py-8 bg-white dark:bg-gray-900 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">About Microspace</h1>
-          <p className="text-xl text-gray-600 max-w-3xl">
-            Since 2015, Microspace has been Tanzania's trusted partner in technology, providing cutting-edge electronics and exceptional service to customers across the country.
-          </p>
-        </div>
-
         {/* Hero Image */}
         <div className="mb-12">
           <img
@@ -83,8 +85,8 @@ const About = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-4xl font-bold text-blue-600 mb-2">{stat.value}</div>
-                <div className="text-gray-600">{stat.label}</div>
+                <div className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">{stat.value}</div>
+                <div className="text-gray-600 dark:text-gray-300">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -94,8 +96,8 @@ const About = () => {
         <div className="mb-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Story</h2>
-              <div className="space-y-4 text-gray-600">
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Our Story</h2>
+              <div className="space-y-4 text-gray-600 dark:text-gray-300">
                 <p>
                   Microspace was founded in 2015 with a simple mission: to make the latest technology accessible to everyone in Tanzania. What started as a small electronics shop in Dar es Salaam has grown into a trusted network of stores serving customers across the country.
                 </p>
@@ -120,21 +122,21 @@ const About = () => {
         {/* Mission & Vision */}
         <div className="mb-16">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-blue-50 rounded-lg p-8">
+            <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-8">
               <div className="flex items-center mb-4">
-                <Target className="h-8 w-8 text-blue-600 mr-3" />
-                <h3 className="text-2xl font-bold text-blue-900">Our Mission</h3>
+                <Target className="h-8 w-8 text-blue-600 dark:text-blue-400 mr-3" />
+                <h3 className="text-2xl font-bold text-blue-900 dark:text-blue-100">Our Mission</h3>
               </div>
-              <p className="text-blue-800">
+              <p className="text-blue-800 dark:text-blue-200">
                 To provide Tanzania with access to the latest technology through quality products, competitive pricing, and exceptional customer service. We aim to be the bridge between global innovation and local needs.
               </p>
             </div>
-            <div className="bg-green-50 rounded-lg p-8">
+            <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-8">
               <div className="flex items-center mb-4">
-                <Eye className="h-8 w-8 text-green-600 mr-3" />
-                <h3 className="text-2xl font-bold text-green-900">Our Vision</h3>
+                <Eye className="h-8 w-8 text-green-600 dark:text-green-400 mr-3" />
+                <h3 className="text-2xl font-bold text-green-900 dark:text-green-100">Our Vision</h3>
               </div>
-              <p className="text-green-800">
+              <p className="text-green-800 dark:text-green-200">
                 To become East Africa's leading electronics retailer, known for innovation, reliability, and community impact. We envision a future where technology empowers every Tanzanian to achieve their goals.
               </p>
             </div>
@@ -143,15 +145,15 @@ const About = () => {
 
         {/* Values */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Our Values</h2>
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">Our Values</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
               <div key={index} className="text-center">
                 <div className="flex justify-center mb-4">
                   {value.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-3">{value.title}</h3>
-                <p className="text-gray-600">{value.description}</p>
+                <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">{value.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300">{value.description}</p>
               </div>
             ))}
           </div>
@@ -159,19 +161,19 @@ const About = () => {
 
         {/* Team */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Meet Our Team</h2>
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">Meet Our Team</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {team.map((member, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+              <div key={index} className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                 <img
                   src={member.image}
                   alt={member.name}
                   className="w-full h-48 object-cover"
                 />
                 <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
+                  <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">{member.name}</h3>
                   <p className="text-blue-500 font-medium mb-3">{member.position}</p>
-                  <p className="text-gray-600 text-sm">{member.bio}</p>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm">{member.bio}</p>
                 </div>
               </div>
             ))}
@@ -180,7 +182,7 @@ const About = () => {
 
         {/* Store Gallery */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Our Stores</h2>
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">Our Stores</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="relative overflow-hidden rounded-lg shadow-lg">
               <img
@@ -219,9 +221,9 @@ const About = () => {
         </div>
 
         {/* Call to Action */}
-        <div className="bg-blue-400 text-white rounded-lg p-8 text-center">
+        <div className="bg-blue-400 dark:bg-blue-600 text-white rounded-lg p-8 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Experience Microspace?</h2>
-          <p className="text-xl mb-6 text-blue-100">
+          <p className="text-xl mb-6 text-blue-100 dark:text-blue-200">
             Visit one of our stores today and discover why thousands of customers trust us with their technology needs.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -239,6 +241,7 @@ const About = () => {
             </a>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

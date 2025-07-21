@@ -25,8 +25,12 @@ import Lap3 from '../Assets/Pictures/laptop-593327_1280.jpg';
 import Acc1 from '../Assets/Pictures/lenovo-1tb-portable-hard-drive-3688029_1280.jpg';
 import Acc2 from '../Assets/Pictures/headphones-1868612_1280.jpg';
 import Acc3 from '../Assets/Pictures/earphone-3789598_1280.jpg';
+import { useLanguage } from '../contexts/LanguageContext';
+import PageHeader from '../components/PageHeader';
 
 const ProductsAd = () => {
+  const { t } = useLanguage();
+
   const products = [
     { id: 1, name: 'MacBook Pro 14" M2', category: 'Laptops', image: Lap1 },
     { id: 2, name: 'Dell XPS 13', category: 'Laptops', image: Lap2 },
@@ -70,20 +74,21 @@ const ProductsAd = () => {
   ];
 
   return (
-    <section className="py-12 bg-gray-50">
+    <div>
+      <PageHeader 
+        title={t('productsTitle')}
+        subtitle={t('productsSubtitle')}
+        backgroundImage="https://images.pexels.com/photos/205421/pexels-photo-205421.jpeg?auto=compress&cs=tinysrgb&w=1200"
+      />
+    <section className="py-12 bg-gray-50 dark:bg-gray-900 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10">
-          <h1 className="text-4xl font-bold text-gray-900">Our Product Categories</h1>
-          <p className="mt-4 text-lg text-gray-600">Welcome to explore the wide range of products available at our Microspace stores.</p>
-        </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {groups.map(group => {
             const items = products.filter(p => p.category === group.key).slice(0, 3);
             return (
-              <div key={group.key} className="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow">
-                <h2 className="text-2xl font-semibold text-gray-800 mb-2">{group.title}</h2>
-                <p className="text-sm text-gray-600 mb-4">{group.description}</p>
+              <div key={group.key} className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow">
+                <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-2">{group.title}</h2>
+                <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">{group.description}</p>
                 <div className="grid grid-cols-3 gap-2">
                   {items.map(item => (
                     <img
@@ -100,6 +105,7 @@ const ProductsAd = () => {
         </div>
       </div>
     </section>
+    </div>
   );
 };
 

@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import { Calendar, User, ArrowRight } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
+import PageHeader from '../components/PageHeader';
 
 const Blog = () => {
+  const { t } = useLanguage();
+
   const blogPosts = [
     {
       id: 1,
@@ -89,20 +93,18 @@ const Blog = () => {
   const featuredPost = blogPosts.find(post => post.featured);
 
   return (
-    <div className="py-8">
+    <div>
+      <PageHeader 
+        title="Microspace Blog"
+        subtitle="Stay updated with the latest technology trends, tips, and news from Tanzania and beyond"
+        backgroundImage="https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=1200"
+      />
+      <div className="py-8 bg-white dark:bg-gray-900 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">Microsoft Blog</h1>
-          <p className="text-lg text-gray-600">
-            Stay updated with the latest technology trends, tips, and news from Tanzania and beyond
-          </p>
-        </div>
-
         {/* Featured Post */}
         {featuredPost && (
           <div className="mb-12">
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
               <div className="grid grid-cols-1 lg:grid-cols-2">
                 <div className="relative">
                   <img
@@ -128,16 +130,16 @@ const Blog = () => {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-4">
                       <div className="flex items-center space-x-2">
-                        <User className="h-4 w-4 text-gray-500" />
-                        <span className="text-sm text-gray-600">{featuredPost.author}</span>
+                        <User className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+                        <span className="text-sm text-gray-600 dark:text-gray-300">{featuredPost.author}</span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <Calendar className="h-4 w-4 text-gray-500" />
-                        <span className="text-sm text-gray-600">{featuredPost.date}</span>
+                        <Calendar className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+                        <span className="text-sm text-gray-600 dark:text-gray-300">{featuredPost.date}</span>
                       </div>
                     </div>
-                    <button className="text-blue-600 hover:text-blue-800 font-medium flex items-center">
-                      Read More
+                    <button className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium flex items-center">
+                      {t('readMore')}
                       <ArrowRight className="h-4 w-4 ml-1" />
                     </button>
                   </div>
@@ -157,7 +159,7 @@ const Blog = () => {
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                   selectedCategory === category
                     ? 'bg-blue-400 text-white'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
                 }`}
               >
                 {category}
@@ -169,7 +171,7 @@ const Blog = () => {
         {/* Blog Posts Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredPosts.filter(post => !post.featured).map((post) => (
-            <article key={post.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+            <article key={post.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
               <img
                 src={post.image}
                 alt={post.title}
@@ -182,12 +184,12 @@ const Blog = () => {
                   </span>
                   <span className="text-gray-500 text-sm">{post.readTime}</span>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3 hover:text-blue-600 transition-colors">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                   {post.title}
                 </h3>
-                <p className="text-gray-600 mb-4">{post.excerpt}</p>
+                <p className="text-gray-600 dark:text-gray-300 mb-4">{post.excerpt}</p>
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-4 text-sm text-gray-500">
+                  <div className="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
                     <div className="flex items-center space-x-1">
                       <User className="h-4 w-4" />
                       <span>{post.author}</span>
@@ -197,7 +199,7 @@ const Blog = () => {
                       <span>{post.date}</span>
                     </div>
                   </div>
-                  <button className="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                  <button className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium flex items-center">
                     Read
                     <ArrowRight className="h-4 w-4 ml-1" />
                   </button>
@@ -208,22 +210,23 @@ const Blog = () => {
         </div>
 
         {/* Newsletter Signup */}
-        <div className="mt-16 bg-blue-400 text-white rounded-lg p-8 text-center">
+        <div className="mt-16 bg-blue-400 dark:bg-blue-600 text-white rounded-lg p-8 text-center">
           <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
-          <p className="text-xl mb-6 text-blue-100">
+          <p className="text-xl mb-6 text-blue-100 dark:text-blue-200">
             Subscribe to our newsletter and never miss a tech update
           </p>
           <div className="flex flex-col sm:flex-row max-w-md mx-auto gap-4">
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:ring-2 focus:ring-green-500 focus:outline-none"
+              className="flex-1 px-4 py-3 rounded-lg text-gray-900 dark:bg-gray-700 dark:text-white dark:border-gray-600 focus:ring-2 focus:ring-green-500 focus:outline-none transition-colors"
             />
             <button className="bg-green-400 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-500 transition-colors">
-              Subscribe
+              {t('subscribe')}
             </button>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../contexts/LanguageContext';
 import {
   Truck,
   Shield,
@@ -18,6 +19,8 @@ import Mikes from '../Assets/Mikes_NoBack.png';
 import Ethernet from '../Assets/Ethernet_NoBack.png';
 
 const Home = () => {
+  const { t } = useLanguage();
+
   // Testimonials data
   const testimonials = [
     {
@@ -105,17 +108,17 @@ const Home = () => {
             {/* Text Content */}
             <div>
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Tanzania's Premier Electronics Store
+                {t('heroTitle')}
               </h1>
               <p className="text-xl mb-8 text-blue-100">
-                Discover the latest technology at unbeatable prices. From smartphones to laptops, we have everything you need.
+                {t('heroSubtitle')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   to="/products"
                   className="bg-white text-blue-900 px-8 py-3 rounded-lg font-semibold hover:bg-blue-200 transition-colors flex items-center justify-center"
                 >
-                  Products
+                  {t('products')}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
                 <a
@@ -124,7 +127,7 @@ const Home = () => {
                   rel="noopener noreferrer"
                   className="bg-green-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors flex items-center justify-center"
                 >
-                  WhatsApp Us
+                  {t('whatsapp')} Us
                 </a>
               </div>
             </div>
@@ -179,7 +182,7 @@ const Home = () => {
                   <div className="flex items-center mb-3">{category.icon}<h3 className="text-xl font-semibold ml-3">{category.title}</h3></div>
                   <p className="text-gray-600 mb-4">{category.description}</p>
                   <Link to="/products" className="inline-flex items-center text-blue-400 hover:text-blue-500 font-medium">
-                    Browse Products<ArrowRight className="ml-2 h-4 w-4" />
+                    Browse {t('products')}<ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </div>
               </div>
@@ -218,7 +221,7 @@ const Home = () => {
             <p className="text-xl mb-8 text-blue-100">Subscribe to our newsletter for the latest tech news and exclusive offers</p>
             <div className="flex flex-col sm:flex-row max-w-md mx-auto gap-4">
               <input type="email" placeholder="Enter your email" className="flex-1 px-4 py-3 rounded-lg text-blue-800 focus:ring-2 focus:ring-green-500 focus:outline-none" />
-              <button className="bg-green-400 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-500 transition-colors">Subscribe</button>
+              <button className="bg-green-400 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-500 transition-colors">{t('subscribe')}</button>
             </div>
           </div>
         </div>

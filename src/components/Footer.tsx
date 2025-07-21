@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../contexts/LanguageContext';
 import Logo from '../Assets/ms logo.png';
 import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Twitter } from 'lucide-react';
 
 const Footer = () => {
+  const { t } = useLanguage();
+
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-gray-900 dark:bg-gray-950 text-white transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
@@ -17,7 +20,7 @@ const Footer = () => {
               />
             </div>
             <p className="text-gray-400 mb-4">
-              Tanzania's premier electronics retailer, offering the latest technology and exceptional customer service since 2015.
+              {t('companyDescription')}
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">
@@ -34,20 +37,20 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-4">{t('quickLinks')}</h3>
             <ul className="space-y-2">
-              <li><Link to="/" className="text-gray-400 hover:text-white transition-colors">Home</Link></li>
-              <li><Link to="/products" className="text-gray-400 hover:text-white transition-colors">Products</Link></li>
-              <li><Link to="/stores" className="text-gray-400 hover:text-white transition-colors">Store Locations</Link></li>
-              <li><Link to="/services" className="text-gray-400 hover:text-white transition-colors">Services</Link></li>
-              <li><Link to="/faq" className="text-gray-400 hover:text-white transition-colors">FAQ</Link></li>
-              <li><Link to="/about" className="text-gray-400 hover:text-white transition-colors">About</Link></li>
+              <li><Link to="/" className="text-gray-400 hover:text-white transition-colors">{t('home')}</Link></li>
+              <li><Link to="/products" className="text-gray-400 hover:text-white transition-colors">{t('products')}</Link></li>
+              <li><Link to="/stores" className="text-gray-400 hover:text-white transition-colors">{t('storeLocator')}</Link></li>
+              <li><Link to="/services" className="text-gray-400 hover:text-white transition-colors">{t('services')}</Link></li>
+              <li><Link to="/faq" className="text-gray-400 hover:text-white transition-colors">{t('faq')}</Link></li>
+              <li><Link to="/about" className="text-gray-400 hover:text-white transition-colors">{t('about')}</Link></li>
             </ul>
           </div>
 
           {/* Store Locations */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Our Stores</h3>
+            <h3 className="text-lg font-semibold mb-4">{t('ourStores')}</h3>
             <div className="space-y-3">
               <div className="flex items-start space-x-2">
                 <MapPin className="h-4 w-4 mt-1 text-blue-400" />
@@ -75,7 +78,7 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
+            <h3 className="text-lg font-semibold mb-4">{t('contactUs')}</h3>
             <div className="space-y-3">
               <div className="flex items-center space-x-2">
                 <Phone className="h-4 w-4 text-blue-400" />

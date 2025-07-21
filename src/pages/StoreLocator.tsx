@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Navigation } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
+import PageHeader from '../components/PageHeader';
 
 // Define the Store interface
 type Store = {
@@ -58,6 +60,8 @@ const stores: Store[] = [
 const defaultStore = stores[1]; // Dar es Salaam
 
 const StoreLocator: React.FC = () => {
+  const { t } = useLanguage();
+
   const [selectedStore, setSelectedStore] = useState<Store>(defaultStore);
 
   // On mount: get user location & auto‑select nearest store
@@ -112,13 +116,14 @@ const StoreLocator: React.FC = () => {
   };
 
   return (
-    <div className="py-8">
+    <div>
+      <PageHeader 
+        title={t('storeLocatorTitle')}
+        subtitle={t('storeLocatorSubtitle')}
+        backgroundImage="https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&w=1200"
+      />
+      <div className="py-8 bg-white dark:bg-gray-900 transition-colors">
       <div className="max-w-4xl mx-auto px-4">
-        <h1 className="text-3xl font-bold mb-2">Microspace Store Locator</h1>
-        <p className="mb-6 text-gray-700">
-          Automatically finds your nearest Microspace outlet, shows it on a map, and lets you get turn‑by‑turn directions with one click.
-        </p>
-
         {/* Store Selection */}
         <div className="flex space-x-4 mb-6">
           {stores.map(store => (
@@ -126,7 +131,9 @@ const StoreLocator: React.FC = () => {
               key={store.id}
               onClick={() => setSelectedStore(store)}
               className={`flex-1 py-2 rounded-lg border transition-shadow hover:shadow-md ${
-                store.id === selectedStore.id ? 'bg-blue-100' : 'bg-white'
+                store.id === selectedStore.id 
+                  ? 'bg-blue-100 dark:bg-blue-900/30 border-blue-300 dark:border-blue-600' 
+                  : 'bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white'
               }`}
             >
               {store.name}
@@ -135,7 +142,7 @@ const StoreLocator: React.FC = () => {
         </div>
 
         {/* Embedded Map */}
-        <div className="mb-8 rounded-lg overflow-hidden border">
+        <div className="mb-8 rounded-lg overflow-hidden border border-gray-300 dark:border-gray-600">
           <iframe
             title="Store location map"
             src={embedSrc}
@@ -148,7 +155,7 @@ const StoreLocator: React.FC = () => {
         </div>
 
         {/* Store Details */}
-        <div className="bg-white rounded-lg shadow-lg p-6">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
           <div className="flex flex-col md:flex-row items-center mb-6">
             <img
               src={selectedStore.image}
@@ -156,20 +163,20 @@ const StoreLocator: React.FC = () => {
               className="w-32 h-32 object-cover rounded-lg mr-6 mb-4 md:mb-0"
             />
             <div>
-              <h2 className="text-2xl font-bold">{selectedStore.name}</h2>
-              <p className="text-gray-600">{selectedStore.address}</p>
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">{selectedStore.name}</h2>
+              <p className="text-gray-600 dark:text-gray-300">{selectedStore.address}</p>
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             <div>
-              <p><strong>Phone:</strong> <a href={`tel:${selectedStore.phone}`} className="text-blue-600">{selectedStore.phone}</a></p>
-              <p><strong>Email:</strong> {selectedStore.email}</p>
-              <p><strong>Manager:</strong> {selectedStore.manager}</p>
+              <p className="text-gray-900 dark:text-white"><strong>Phone:</strong> <a href={`tel:${selectedStore.phone}`} className="text-blue-600 dark:text-blue-400">{selectedStore.phone}</a></p>
+              <p className="text-gray-900 dark:text-white"><strong>Email:</strong> <span className="text-gray-600 dark:text-gray-300">{selectedStore.email}</span></p>
+              <p className="text-gray-900 dark:text-white"><strong>Manager:</strong> <span className="text-gray-600 dark:text-gray-300">{selectedStore.manager}</span></p>
             </div>
             <div>
-              <p><strong>Hours:</strong></p>
-              <p>Mon–Sat: {selectedStore.hours.weekdays}</p>
-              <p>Sun: {selectedStore.hours.sunday}</p>
+              <p className="text-gray-900 dark:text-white"><strong>Hours:</strong></p>
+              <p className="text-gray-600 dark:text-gray-300">Mon–Sat: {selectedStore.hours.weekdays}</p>
+              <p className="text-gray-600 dark:text-gray-300">Sun: {selectedStore.hours.sunday}</p>
             </div>
           </div>
           <div className="flex space-x-4">
@@ -178,7 +185,7 @@ const StoreLocator: React.FC = () => {
               className="flex-1 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center"
             >
               <Navigation className="h-5 w-5 mr-2" />
-              Get Directions
+              {t('getDirections')}
             </button>
             <a
               href={`tel:${selectedStore.phone}`}
@@ -188,6 +195,7 @@ const StoreLocator: React.FC = () => {
             </a>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
