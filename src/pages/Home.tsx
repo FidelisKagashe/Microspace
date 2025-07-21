@@ -1,7 +1,24 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Truck, Shield, Star, ArrowRight, Phone, Laptop, Headphones } from 'lucide-react';
+import {
+  Truck,
+  Shield,
+  Star,
+  ArrowRight,
+  Phone as PhoneIcon,
+  Laptop as LaptopIcon,
+  Headphones
+} from 'lucide-react';
+
+import LaptopImg from '../Assets/1340815067.usr17748-removebg-preview.png';
+import DesktopImg from '../Assets/Desktop_Removed_Background.png';
+import MouseImg from '../Assets/Muse and Keyboard_NoBackground.png';
+import PhonesImg from '../Assets/Phones_Removed_Background.png';
+import Mikes from '../Assets/Mikes_NoBack.png';
+import Ethernet from '../Assets/Ethernet_NoBack.png';
 
 const Home = () => {
+  // Testimonials data
   const testimonials = [
     {
       name: "John Mwangi",
@@ -26,6 +43,7 @@ const Home = () => {
     }
   ];
 
+  // Features data
   const features = [
     {
       icon: <Truck className="h-8 w-8 text-blue-400" />,
@@ -44,15 +62,16 @@ const Home = () => {
     }
   ];
 
+  // Categories data
   const categories = [
     {
-      icon: <Laptop className="h-12 w-12 text-blue-400" />,
+      icon: <LaptopIcon className="h-12 w-12 text-blue-400" />,
       title: "Computers & Laptops",
       description: "Latest models from top brands",
       image: "https://images.pexels.com/photos/205421/pexels-photo-205421.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
-      icon: <Phone className="h-12 w-12 text-blue-400" />,
+      icon: <PhoneIcon className="h-12 w-12 text-blue-400" />,
       title: "Mobile Phones",
       description: "Smartphones and accessories",
       image: "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=400"
@@ -65,12 +84,25 @@ const Home = () => {
     }
   ];
 
+  // Hero slideshow images
+  const heroImages = [LaptopImg, DesktopImg, MouseImg, PhonesImg, Mikes, Ethernet];
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    // Slide every 4 seconds
+    const interval = setInterval(() => {
+      setCurrent(prev => (prev + 1) % heroImages.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div>
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-blue-400 to-blue-300 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Text Content */}
             <div>
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
                 Tanzania's Premier Electronics Store
@@ -96,12 +128,22 @@ const Home = () => {
                 </a>
               </div>
             </div>
-            <div className="relative">
-              <img
-                src="https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg?auto=compress&cs=tinysrgb&w=800"
-                alt="Electronics Store"
-                className="rounded-lg shadow-2xl"
-              />
+            {/* Slideshow with slide-in effect */}
+            <div className="relative flex justify-center items-center h-96 overflow-hidden">
+              {/* Dotted white circle */}
+              <div className="absolute bg-white rounded-full border-2 border-dashed border-white opacity-30 w-72 h-72"></div>
+              {heroImages.map((src, idx) => (
+                <img
+                  key={idx}
+                  src={src}
+                  alt="Electronics Showcase"
+                  className={`absolute rounded-lg w-auto h-96 object-contain transition-all duration-1000 ease-out ${
+                    idx === current
+                      ? 'opacity-100 translate-x-0'
+                      : 'opacity-0 translate-x-full'
+                  }`}
+                />
+              ))}
             </div>
           </div>
         </div>
@@ -113,9 +155,7 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <div key={index} className="text-center p-6 rounded-lg hover:shadow-lg transition-shadow">
-                <div className="flex justify-center mb-4">
-                  {feature.icon}
-                </div>
+                <div className="flex justify-center mb-4">{feature.icon}</div>
                 <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
                 <p className="text-gray-600">{feature.description}</p>
               </div>
@@ -134,23 +174,12 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {categories.map((category, index) => (
               <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                <img
-                  src={category.image}
-                  alt={category.title}
-                  className="w-full h-48 object-cover"
-                />
+                <img src={category.image} alt={category.title} className="w-full h-48 object-cover" />
                 <div className="p-6">
-                  <div className="flex items-center mb-3">
-                    {category.icon}
-                    <h3 className="text-xl font-semibold ml-3">{category.title}</h3>
-                  </div>
+                  <div className="flex items-center mb-3">{category.icon}<h3 className="text-xl font-semibold ml-3">{category.title}</h3></div>
                   <p className="text-gray-600 mb-4">{category.description}</p>
-                  <Link
-                    to="/products"
-                    className="inline-flex items-center text-blue-400 hover:text-blue-500 font-medium"
-                  >
-                    Browse Products
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                  <Link to="/products" className="inline-flex items-center text-blue-400 hover:text-blue-500 font-medium">
+                    Browse Products<ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </div>
               </div>
@@ -170,21 +199,10 @@ const Home = () => {
             {testimonials.map((testimonial, index) => (
               <div key={index} className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow">
                 <div className="flex items-center mb-4">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    className="w-12 h-12 rounded-full object-cover"
-                  />
-                  <div className="ml-4">
-                    <h4 className="font-semibold">{testimonial.name}</h4>
-                    <p className="text-gray-600 text-sm">{testimonial.location}</p>
-                  </div>
+                  <img src={testimonial.image} alt={testimonial.name} className="w-12 h-12 rounded-full object-cover" />
+                  <div className="ml-4"><h4 className="font-semibold">{testimonial.name}</h4><p className="text-gray-600 text-sm">{testimonial.location}</p></div>
                 </div>
-                <div className="flex mb-3">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
-                  ))}
-                </div>
+                <div className="flex mb-3">{[...Array(testimonial.rating)].map((_, i) => (<Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />))}</div>
                 <p className="text-gray-700">{testimonial.comment}</p>
               </div>
             ))}
@@ -197,18 +215,10 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
-            <p className="text-xl mb-8 text-blue-100">
-              Subscribe to our newsletter for the latest tech news and exclusive offers
-            </p>
+            <p className="text-xl mb-8 text-blue-100">Subscribe to our newsletter for the latest tech news and exclusive offers</p>
             <div className="flex flex-col sm:flex-row max-w-md mx-auto gap-4">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-lg text-blue-800 focus:ring-2 focus:ring-green-500 focus:outline-none"
-              />
-              <button className="bg-green-400 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-500 transition-colors">
-                Subscribe
-              </button>
+              <input type="email" placeholder="Enter your email" className="flex-1 px-4 py-3 rounded-lg text-blue-800 focus:ring-2 focus:ring-green-500 focus:outline-none" />
+              <button className="bg-green-400 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-500 transition-colors">Subscribe</button>
             </div>
           </div>
         </div>

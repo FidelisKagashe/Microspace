@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, Search } from 'lucide-react';
+import { Menu, X, Phone, Search, Facebook, Instagram, Twitter } from 'lucide-react';
 import Logo from '../Assets/ms logo.png';
 
-const Header = () => {
+const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
@@ -23,20 +23,39 @@ const Header = () => {
       <div className="bg-blue-400 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-2 text-sm">
+            {/* Phone & Delivery */}
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-2">
                 <Phone className="h-4 w-4" />
                 <span>+255 767 525 234</span>
               </div>
               <span className="hidden md:inline">|</span>
-              <span className="hidden md:inline">Derivery support</span>
+              <span className="hidden md:inline">Delivery support</span>
             </div>
-            <div className="flex items-center space-x-2">
-              <div className="flex space-x-2">
-                <a href="#" className="hover:text-blue-200 transition-colors">Facebook</a>
-                <a href="#" className="hover:text-blue-200 transition-colors">Instagram</a>
-                <a href="#" className="hover:text-blue-200 transition-colors">Twitter</a>
-              </div>
+
+            {/* Social Media Icons */}
+            <div className="flex items-center space-x-4">
+              <a
+                href="#"
+                className="flex items-center space-x-1 hover:text-blue-200 transition-colors"
+              >
+                <Facebook className="h-4 w-4" />
+                <span className="hidden md:inline">Facebook</span>
+              </a>
+              <a
+                href="#"
+                className="flex items-center space-x-1 hover:text-blue-200 transition-colors"
+              >
+                <Instagram className="h-4 w-4" />
+                <span className="hidden md:inline">Instagram</span>
+              </a>
+              <a
+                href="#"
+                className="flex items-center space-x-1 hover:text-blue-200 transition-colors"
+              >
+                <Twitter className="h-4 w-4" />
+                <span className="hidden md:inline">Twitter</span>
+              </a>
             </div>
           </div>
         </div>
@@ -49,7 +68,7 @@ const Header = () => {
           <Link to="/" className="flex items-center space-x-2">
             <img
               src={Logo}
-              alt=""
+              alt="Microspace Logo"
               className="h-8 md:h-10 w-auto object-contain"
             />
           </Link>
@@ -61,12 +80,12 @@ const Header = () => {
               <input
                 type="text"
                 placeholder="Search products..."
-                className="w-full pl-10 focus:outline-none pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
           </div>
 
-          {/* Right Side */}
+          {/* WhatsApp Link */}
           <div className="flex items-center space-x-4">
             <a
               href="https://wa.me/255767525234"
@@ -82,12 +101,13 @@ const Header = () => {
           <button
             className="md:hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
 
-        {/* Navigation */}
+        {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-8 pb-4">
           {navigation.map((item) => (
             <Link

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ChevronDown, ChevronUp, Search, HelpCircle } from 'lucide-react';
 import { categories, faqs } from '../Data/Faqs';
 
-const FAQ = () => {
+const Faq = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [openItems, setOpenItems] = useState<Record<number, boolean>>({});
@@ -59,7 +59,7 @@ const FAQ = () => {
                 onClick={() => setSelectedCategory(category)}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                   selectedCategory === category
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-blue-400 text-white'
                     : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                 }`}
               >
@@ -151,4 +151,4 @@ const FAQ = () => {
   );
 };
 
-export default FAQ;
+export default Faq;
