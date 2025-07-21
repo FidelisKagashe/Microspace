@@ -18,7 +18,7 @@ import PhonesImg from '../Assets/Phones_Removed_Background.png';
 import Mikes from '../Assets/Mikes_NoBack.png';
 import Ethernet from '../Assets/Ethernet_NoBack.png';
 
-const Home = () => {
+const Home: React.FC = () => {
   const { t } = useLanguage();
 
   // Testimonials data
@@ -50,18 +50,18 @@ const Home = () => {
   const features = [
     {
       icon: <Truck className="h-8 w-8 text-blue-400" />,
-      title: "Free Delivery",
-      description: "Unlock free delivery with qualifying purchases, making your shopping experience even more convenient"
+      title: t('freeDelivery'),
+      description: t('freeDeliveryDesc')
     },
     {
       icon: <Shield className="h-8 w-8 text-blue-400" />,
-      title: "Warranty Protection",
-      description: "Comprehensive warranty coverage on all our products"
+      title: t('warrantyProtection'),
+      description: t('warrantyProtectionDesc')
     },
     {
       icon: <Star className="h-8 w-8 text-blue-400" />,
-      title: "Expert Support",
-      description: "Professional technical support and repair services"
+      title: t('expertSupport'),
+      description: t('expertSupportDesc')
     }
   ];
 
@@ -69,20 +69,20 @@ const Home = () => {
   const categories = [
     {
       icon: <LaptopIcon className="h-12 w-12 text-blue-400" />,
-      title: "Computers & Laptops",
-      description: "Latest models from top brands",
+      title: t('computersLaptops'),
+      description: t('latestModels'),
       image: "https://images.pexels.com/photos/205421/pexels-photo-205421.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
       icon: <PhoneIcon className="h-12 w-12 text-blue-400" />,
-      title: "Mobile Phones",
-      description: "Smartphones and accessories",
+      title: t('mobilePhones'),
+      description: t('smartphonesAccessories'),
       image: "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
       icon: <Headphones className="h-12 w-12 text-blue-400" />,
-      title: "Electronics & Accessories",
-      description: "Cables, chargers, and more",
+      title: t('electronicsAccessories'),
+      description: t('cablesChargers'),
       image: "https://images.pexels.com/photos/1649771/pexels-photo-1649771.jpeg?auto=compress&cs=tinysrgb&w=400"
     }
   ];
@@ -100,9 +100,9 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
+    <div className="bg-white dark:bg-gray-900 transition-colors">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-400 to-blue-300 text-white py-20">
+      <section className="bg-gradient-to-r from-blue-400 to-blue-300 dark:from-blue-600 dark:to-blue-500 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Text Content */}
@@ -153,14 +153,14 @@ const Home = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white dark:bg-gray-900 transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
-              <div key={index} className="text-center p-6 rounded-lg hover:shadow-lg transition-shadow">
+              <div key={index} className="text-center p-6 rounded-lg hover:shadow-lg transition-shadow bg-white dark:bg-gray-800">
                 <div className="flex justify-center mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
+                <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">{feature.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300">{feature.description}</p>
               </div>
             ))}
           </div>
@@ -168,21 +168,21 @@ const Home = () => {
       </section>
 
       {/* Product Categories */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-gray-50 dark:bg-gray-800 transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Product Categories</h2>
-            <p className="text-xl text-gray-600">Explore our wide range of electronics and accessories</p>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">{t('ourProductCategories')}</h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300">{t('exploreWideRange')}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {categories.map((category, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+              <div key={index} className="bg-white dark:bg-gray-700 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                 <img src={category.image} alt={category.title} className="w-full h-48 object-cover" />
                 <div className="p-6">
-                  <div className="flex items-center mb-3">{category.icon}<h3 className="text-xl font-semibold ml-3">{category.title}</h3></div>
-                  <p className="text-gray-600 mb-4">{category.description}</p>
-                  <Link to="/products" className="inline-flex items-center text-blue-400 hover:text-blue-500 font-medium">
-                    Browse {t('products')}<ArrowRight className="ml-2 h-4 w-4" />
+                  <div className="flex items-center mb-3">{category.icon}<h3 className="text-xl font-semibold ml-3 text-gray-900 dark:text-white">{category.title}</h3></div>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4">{category.description}</p>
+                  <Link to="/products" className="inline-flex items-center text-blue-400 dark:text-blue-300 hover:text-blue-500 dark:hover:text-blue-400 font-medium">
+                    {t('browseProducts')}<ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </div>
               </div>
@@ -192,21 +192,21 @@ const Home = () => {
       </section>
 
       {/* Customer Testimonials */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white dark:bg-gray-900 transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">What Our Customers Say</h2>
-            <p className="text-xl text-gray-600">Join thousands of satisfied customers across Tanzania</p>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">{t('whatCustomersSay')}</h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300">{t('joinThousands')}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow">
+              <div key={index} className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 hover:shadow-lg transition-shadow">
                 <div className="flex items-center mb-4">
                   <img src={testimonial.image} alt={testimonial.name} className="w-12 h-12 rounded-full object-cover" />
-                  <div className="ml-4"><h4 className="font-semibold">{testimonial.name}</h4><p className="text-gray-600 text-sm">{testimonial.location}</p></div>
+                  <div className="ml-4"><h4 className="font-semibold text-gray-900 dark:text-white">{testimonial.name}</h4><p className="text-gray-600 dark:text-gray-300 text-sm">{testimonial.location}</p></div>
                 </div>
                 <div className="flex mb-3">{[...Array(testimonial.rating)].map((_, i) => (<Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />))}</div>
-                <p className="text-gray-700">{testimonial.comment}</p>
+                <p className="text-gray-700 dark:text-gray-300">{testimonial.comment}</p>
               </div>
             ))}
           </div>
@@ -214,13 +214,13 @@ const Home = () => {
       </section>
 
       {/* Newsletter Section */}
-      <section className="py-16 bg-blue-400 text-white">
+      <section className="py-16 bg-blue-400 dark:bg-blue-600 text-white transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
-            <p className="text-xl mb-8 text-blue-100">Subscribe to our newsletter for the latest tech news and exclusive offers</p>
+            <h2 className="text-3xl font-bold mb-4">{t('stayUpdated')}</h2>
+            <p className="text-xl mb-8 text-blue-100 dark:text-blue-200">{t('stayUpdatedNewsletter')}</p>
             <div className="flex flex-col sm:flex-row max-w-md mx-auto gap-4">
-              <input type="email" placeholder="Enter your email" className="flex-1 px-4 py-3 rounded-lg text-blue-800 focus:ring-2 focus:ring-green-500 focus:outline-none" />
+              <input type="email" placeholder={t('enterEmail')} className="flex-1 px-4 py-3 rounded-lg text-blue-800 dark:bg-gray-700 dark:text-white dark:border-gray-600 focus:ring-2 focus:ring-green-500 focus:outline-none transition-colors" />
               <button className="bg-green-400 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-500 transition-colors">{t('subscribe')}</button>
             </div>
           </div>

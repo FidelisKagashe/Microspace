@@ -95,8 +95,8 @@ const Blog = () => {
   return (
     <div>
       <PageHeader 
-        title="Microspace Blog"
-        subtitle="Stay updated with the latest technology trends, tips, and news from Tanzania and beyond"
+        title={t('blogTitle')}
+        subtitle={t('blogSubtitle')}
         backgroundImage="https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=1200"
       />
       <div className="py-8 bg-white dark:bg-gray-900 transition-colors">
@@ -104,7 +104,7 @@ const Blog = () => {
         {/* Featured Post */}
         {featuredPost && (
           <div className="mb-12">
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all">
               <div className="grid grid-cols-1 lg:grid-cols-2">
                 <div className="relative">
                   <img
@@ -114,7 +114,7 @@ const Blog = () => {
                   />
                   <div className="absolute top-4 left-4">
                     <span className="bg-blue-400 text-white px-3 py-1 rounded-full text-sm font-medium">
-                      Featured
+                      {t('featured')}
                     </span>
                   </div>
                 </div>
@@ -125,8 +125,8 @@ const Blog = () => {
                     </span>
                     <span className="text-gray-500 text-sm">{featuredPost.readTime}</span>
                   </div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-4">{featuredPost.title}</h2>
-                  <p className="text-gray-600 mb-6">{featuredPost.excerpt}</p>
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">{featuredPost.title}</h2>
+                  <p className="text-gray-600 dark:text-gray-300 mb-6">{featuredPost.excerpt}</p>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-4">
                       <div className="flex items-center space-x-2">
@@ -162,7 +162,12 @@ const Blog = () => {
                     : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
                 }`}
               >
-                {category}
+                {category === 'All' ? t('all') : 
+                 category === 'Mobile Technology' ? t('mobileechnology') :
+                 category === 'Computers' ? t('computers') :
+                 category === 'Gaming' ? t('gaming') :
+                 category === 'Maintenance' ? t('maintenance') :
+                 category}
               </button>
             ))}
           </div>
@@ -171,7 +176,7 @@ const Blog = () => {
         {/* Blog Posts Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredPosts.filter(post => !post.featured).map((post) => (
-            <article key={post.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+            <article key={post.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all">
               <img
                 src={post.image}
                 alt={post.title}
@@ -200,7 +205,7 @@ const Blog = () => {
                     </div>
                   </div>
                   <button className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium flex items-center">
-                    Read
+                    {t('read')}
                     <ArrowRight className="h-4 w-4 ml-1" />
                   </button>
                 </div>
@@ -210,15 +215,15 @@ const Blog = () => {
         </div>
 
         {/* Newsletter Signup */}
-        <div className="mt-16 bg-blue-400 dark:bg-blue-600 text-white rounded-lg p-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
+        <div className="mt-16 bg-blue-400 dark:bg-blue-600 text-white rounded-lg p-8 text-center transition-colors">
+          <h2 className="text-3xl font-bold mb-4">{t('stayUpdated')}</h2>
           <p className="text-xl mb-6 text-blue-100 dark:text-blue-200">
             Subscribe to our newsletter and never miss a tech update
           </p>
           <div className="flex flex-col sm:flex-row max-w-md mx-auto gap-4">
             <input
               type="email"
-              placeholder="Enter your email"
+              placeholder={t('enterEmail')}
               className="flex-1 px-4 py-3 rounded-lg text-gray-900 dark:bg-gray-700 dark:text-white dark:border-gray-600 focus:ring-2 focus:ring-green-500 focus:outline-none transition-colors"
             />
             <button className="bg-green-400 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-500 transition-colors">

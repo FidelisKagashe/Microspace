@@ -155,7 +155,7 @@ const StoreLocator: React.FC = () => {
         </div>
 
         {/* Store Details */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 transition-colors">
           <div className="flex flex-col md:flex-row items-center mb-6">
             <img
               src={selectedStore.image}
@@ -169,12 +169,12 @@ const StoreLocator: React.FC = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             <div>
-              <p className="text-gray-900 dark:text-white"><strong>Phone:</strong> <a href={`tel:${selectedStore.phone}`} className="text-blue-600 dark:text-blue-400">{selectedStore.phone}</a></p>
-              <p className="text-gray-900 dark:text-white"><strong>Email:</strong> <span className="text-gray-600 dark:text-gray-300">{selectedStore.email}</span></p>
-              <p className="text-gray-900 dark:text-white"><strong>Manager:</strong> <span className="text-gray-600 dark:text-gray-300">{selectedStore.manager}</span></p>
+              <p className="text-gray-900 dark:text-white"><strong>{t('phone')}:</strong> <a href={`tel:${selectedStore.phone}`} className="text-blue-600 dark:text-blue-400">{selectedStore.phone}</a></p>
+              <p className="text-gray-900 dark:text-white"><strong>{t('email')}:</strong> <span className="text-gray-600 dark:text-gray-300">{selectedStore.email}</span></p>
+              <p className="text-gray-900 dark:text-white"><strong>{t('manager')}:</strong> <span className="text-gray-600 dark:text-gray-300">{selectedStore.manager}</span></p>
             </div>
             <div>
-              <p className="text-gray-900 dark:text-white"><strong>Hours:</strong></p>
+              <p className="text-gray-900 dark:text-white"><strong>{t('hours')}:</strong></p>
               <p className="text-gray-600 dark:text-gray-300">Mon–Sat: {selectedStore.hours.weekdays}</p>
               <p className="text-gray-600 dark:text-gray-300">Sun: {selectedStore.hours.sunday}</p>
             </div>
@@ -191,7 +191,7 @@ const StoreLocator: React.FC = () => {
               href={`tel:${selectedStore.phone}`}
               className="flex-1 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center"
             >
-              Call Store
+              {t('callStore')}
             </a>
           </div>
         </div>

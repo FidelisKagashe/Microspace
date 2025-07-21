@@ -62,15 +62,15 @@ const ProductsAd = () => {
   ];
 
   const groups = [
-    { key: 'Desktops', title: 'Desktops', description: 'Powerful desktop machines for work and play.' },
-    { key: 'Laptops', title: 'Laptops', description: 'Portable and performant laptops for every need.' },
-    { key: 'Mobile Phones', title: 'Mobile Phones', description: 'Latest smartphones to keep you connected.' },
-    { key: 'Monitors', title: 'Monitors', description: 'Crisp and immersive displays for every setup.' },
-    { key: 'Tablets', title: 'Tablets', description: 'Versatile tablets for work and entertainment.' },
-    { key: 'Mouses', title: 'Mouses', description: 'Precision mice for gaming and productivity.' },
-    { key: 'Keyboards', title: 'Keyboards', description: 'Comfortable keyboards with mechanical switches.' },
-    { key: 'Printers', title: 'Printers', description: 'Fast and reliable printers for home and office.' },
-    { key: 'Accessories', title: 'Accessories', description: 'High-quality mics for streaming and recording.' },
+    { key: 'Desktops', title: t('desktops'), description: t('desktopsDesc') },
+    { key: 'Laptops', title: t('laptops'), description: t('laptopsDesc') },
+    { key: 'Mobile Phones', title: t('mobilePhones'), description: t('mobilePhonesDesc') },
+    { key: 'Monitors', title: t('monitors'), description: t('monitorsDesc') },
+    { key: 'Tablets', title: t('tablets'), description: t('tabletsDesc') },
+    { key: 'Mouses', title: t('mouses'), description: t('mousesDesc') },
+    { key: 'Keyboards', title: t('keyboards'), description: t('keyboardsDesc') },
+    { key: 'Printers', title: t('printers'), description: t('printersDesc') },
+    { key: 'Accessories', title: t('accessories'), description: t('accessoriesDesc') },
   ];
 
   return (

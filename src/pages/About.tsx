@@ -96,7 +96,7 @@ const About = () => {
         <div className="mb-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Our Story</h2>
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">{t('ourStory')}</h2>
               <div className="space-y-4 text-gray-600 dark:text-gray-300">
                 <p>
                   Microspace was founded in 2015 with a simple mission: to make the latest technology accessible to everyone in Tanzania. What started as a small electronics shop in Dar es Salaam has grown into a trusted network of stores serving customers across the country.
@@ -125,7 +125,7 @@ const About = () => {
             <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-8">
               <div className="flex items-center mb-4">
                 <Target className="h-8 w-8 text-blue-600 dark:text-blue-400 mr-3" />
-                <h3 className="text-2xl font-bold text-blue-900 dark:text-blue-100">Our Mission</h3>
+                <h3 className="text-2xl font-bold text-blue-900 dark:text-blue-100">{t('ourMission')}</h3>
               </div>
               <p className="text-blue-800 dark:text-blue-200">
                 To provide Tanzania with access to the latest technology through quality products, competitive pricing, and exceptional customer service. We aim to be the bridge between global innovation and local needs.
@@ -134,7 +134,7 @@ const About = () => {
             <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-8">
               <div className="flex items-center mb-4">
                 <Eye className="h-8 w-8 text-green-600 dark:text-green-400 mr-3" />
-                <h3 className="text-2xl font-bold text-green-900 dark:text-green-100">Our Vision</h3>
+                <h3 className="text-2xl font-bold text-green-900 dark:text-green-100">{t('ourVision')}</h3>
               </div>
               <p className="text-green-800 dark:text-green-200">
                 To become East Africa's leading electronics retailer, known for innovation, reliability, and community impact. We envision a future where technology empowers every Tanzanian to achieve their goals.
@@ -145,15 +145,15 @@ const About = () => {
 
         {/* Values */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">Our Values</h2>
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">{t('ourValues')}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
               <div key={index} className="text-center">
                 <div className="flex justify-center mb-4">
                   {value.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">{value.title}</h3>
-                <p className="text-gray-600 dark:text-gray-300">{value.description}</p>
+                <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">{t(value.title.toLowerCase().replace(' ', ''))}</h3>
+                <p className="text-gray-600 dark:text-gray-300">{t(value.title.toLowerCase().replace(' ', '') + 'Desc')}</p>
               </div>
             ))}
           </div>
@@ -161,7 +161,7 @@ const About = () => {
 
         {/* Team */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">Meet Our Team</h2>
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">{t('meetOurTeam')}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {team.map((member, index) => (
               <div key={index} className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
@@ -182,7 +182,7 @@ const About = () => {
 
         {/* Store Gallery */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">Our Stores</h2>
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">{t('ourStoresGallery')}</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="relative overflow-hidden rounded-lg shadow-lg">
               <img
@@ -192,7 +192,7 @@ const About = () => {
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
                 <h3 className="text-white font-semibold text-lg">Dar es Salaam</h3>
-                <p className="text-white/90 text-sm">Our flagship store</p>
+                <p className="text-white/90 text-sm">{t('ourFlagshipStore')}</p>
               </div>
             </div>
             <div className="relative overflow-hidden rounded-lg shadow-lg">
@@ -203,7 +203,7 @@ const About = () => {
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
                 <h3 className="text-white font-semibold text-lg">Dodoma</h3>
-                <p className="text-white/90 text-sm">Serving the capital</p>
+                <p className="text-white/90 text-sm">{t('servingCapital')}</p>
               </div>
             </div>
             <div className="relative overflow-hidden rounded-lg shadow-lg">
@@ -214,7 +214,7 @@ const About = () => {
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
                 <h3 className="text-white font-semibold text-lg">Mwanza</h3>
-                <p className="text-white/90 text-sm">Lake zone headquarters</p>
+                <p className="text-white/90 text-sm">{t('lakeZoneHeadquarters')}</p>
               </div>
             </div>
           </div>
@@ -222,22 +222,22 @@ const About = () => {
 
         {/* Call to Action */}
         <div className="bg-blue-400 dark:bg-blue-600 text-white rounded-lg p-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to Experience Microspace?</h2>
+          <h2 className="text-3xl font-bold mb-4">{t('readyToExperience')}</h2>
           <p className="text-xl mb-6 text-blue-100 dark:text-blue-200">
-            Visit one of our stores today and discover why thousands of customers trust us with their technology needs.
+            {t('visitStoreToday')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="/stores"
               className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
             >
-              Find a Store
+              {t('findStore')}
             </a>
             <a
               href="/contact"
               className="bg-green-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors"
             >
-              Contact Us
+              {t('contactUs')}
             </a>
           </div>
         </div>

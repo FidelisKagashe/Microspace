@@ -42,7 +42,7 @@ const Faq = () => {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400 dark:text-gray-500" />
             <input
               type="text"
-              placeholder="Search FAQs..."
+              placeholder={t('searchFAQs')}
               value={searchTerm}
               onChange={e => setSearchTerm(e.target.value)}
               className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
@@ -63,7 +63,7 @@ const Faq = () => {
                     : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
                 }`}
               >
-                {category}
+                {category === 'All' ? t('all') : category}
               </button>
             ))}
           </div>
@@ -72,7 +72,7 @@ const Faq = () => {
         {/* FAQ Items */}
         <div className="space-y-4">
           {filteredFAQs.map(faq => (
-            <div key={faq.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-md">
+            <div key={faq.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-md transition-colors">
               <button
                 onClick={() => toggleItem(faq.id)}
                 className="w-full px-6 py-4 text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset transition-colors"
@@ -110,18 +110,18 @@ const Faq = () => {
           <div className="text-center py-12">
             <HelpCircle className="h-16 w-16 text-gray-400 dark:text-gray-500 mx-auto mb-4" />
             <p className="text-gray-500 dark:text-gray-400 text-lg">
-              No FAQs found matching your search criteria.
+              {t('noFAQsFound')}
             </p>
           </div>
         )}
 
         {/* Contact Support */}
-        <div className="mt-16 bg-blue-50 dark:bg-blue-900/20 rounded-lg p-8 text-center">
+        <div className="mt-16 bg-blue-50 dark:bg-blue-900/20 rounded-lg p-8 text-center transition-colors">
           <h2 className="text-2xl font-bold text-blue-900 dark:text-blue-100 mb-4">
-            Still have questions?
+            {t('stillHaveQuestions')}
           </h2>
           <p className="text-blue-700 dark:text-blue-300 mb-6">
-            Can't find what you're looking for? Our support team is here to help!
+            {t('cantFindLooking')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
